@@ -11,6 +11,6 @@
           <a href="#subscribe" class="nav-link px-2">Subscribe us</a>
         </li>
       </ul>
-      <p class="text-center">&copy; 2021 Blogs By creativecoder, Inc</p>
+      <p class="text-center">&copy; 2022 Blogs By HoneyBunny, Chocolate</p>
     </footer>
   </div>

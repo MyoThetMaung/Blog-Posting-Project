@@ -16,6 +16,17 @@
                 <div><a href="/categories/{{$blog->category->name}}"><span class="badge bg-success">{{$blog->category->name}}</span></a></div>
                 <div>{{$blog->created_at->diffForHumans()}}</div>
             </div>
+            <form action="/blogs/{{$blog->slug}}/subscription" method="POST">
+                @csrf
+                @auth
+                    @if(auth()->user()->isSubscribed($blog))
+                        <button class="btn btn-danger btn-lg">Unsubscribe</button>
+                    @else
+                        <button class="btn btn-warning btn-lg">Subscribe</button>
+                    @endif
+                @endauth
+            </form> <br>
+
             <p class="lh-md">
                 {{$blog->body}}
             </p>
@@ -28,7 +39,7 @@
     <section class="container">
         <div class="col-md-8 mx-auto">
             <div class="card d-flex p-3 my-3 shadow-sm">
-                <form method="post" action="/blogs/{{$blog->slug}}/comments">
+                <form method="POST" action="/blogs/{{$blog->slug}}/comments">
                     @csrf
                     <div class="form-group mb-3">
                         <textarea name="body" id="" cols="100" rows="5" placeholder="say something" class="form-control border border-0"></textarea>
@@ -36,7 +47,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    <div class=" d-flex justify-content-end ">
+                    <div class=" d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                   </form>
@@ -47,7 +58,7 @@
       <p class="text-center text-black-50">Please <a href="/login">login</a> to participate in the conversation ...</p>
     @endauth
     <!-- comment section -->
-    <x-comment :comments="$blog->comments" />
+    <x-comment :comments="$blog->comments()->latest()->paginate(2)" />
 
     <!-- subscribe new blogs -->
     <x-subscribe/>

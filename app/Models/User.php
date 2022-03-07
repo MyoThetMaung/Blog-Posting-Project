@@ -50,11 +50,19 @@ class User extends Authenticatable
     }
 
     public function getUserNameAttribute($name)
-    {                                     
+    {
         return ucwords($name);                                  //this is a custom attribute | coding must be formatted correctly | getter
     }
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);      //this is a custom attribute | coding must be formatted correctly | setter
+    }
+
+    public function subscribedBlogs(){
+        return $this->belongsToMany(Blog::class,'blog_user');
+    }
+
+    public function isSubscribed($blog){
+        return auth()->user()->subscribedBlogs && auth()->user()->subscribedBlogs->contains('id',$blog->id);
     }
 }

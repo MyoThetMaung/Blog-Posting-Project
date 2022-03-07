@@ -48,6 +48,7 @@ class Blog extends Model
         return $this->hasMany(Comment::class);
     }
 
+    
     public static function find($slug){
         $path = resource_path("views/blogs/$slug.html");
         if (!file_exists($path)) {
@@ -56,5 +57,17 @@ class Blog extends Model
         return cache()->remember("posts.$slug", 60, function () use ($path) {
             return file_get_contents($path);
         });
+    }
+
+    public function subscribers(){
+        return $this->belongsToMany(User::class,'blog_user');                          
+    }
+
+    public function unSubscribe(){
+        return $this->subscribers()->detach(auth()->id());                               //blog -> user -> user_id is removed from pivot table
+    }
+
+    public function subscribe(){
+        return $this->subscribers()->attach(auth()->id());
     }
 }

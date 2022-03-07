@@ -1,0 +1,1 @@
+<h1>{{$blog->title}} mail testing</h1>

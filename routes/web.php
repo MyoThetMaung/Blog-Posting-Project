@@ -21,7 +21,7 @@ Route::post('/blogs/{blog:slug}/comments', [CommentController::class,'store']);
 
 Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
 
-
+Route::post('/blogs/{blog:slug}/subscription', [BlogController::class,'subscriptionHandler']);
 
 
 
@@ -46,6 +46,8 @@ Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
 //         'currentCategory' => $category->name
 //     ]);
 // });
+
+
 
 
 
