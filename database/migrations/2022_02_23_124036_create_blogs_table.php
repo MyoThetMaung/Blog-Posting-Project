@@ -21,6 +21,7 @@ class CreateBlogsTable extends Migration
             $table->string('slug')->unique();
             $table->text('intro');
             $table->text('body');
+            $table->text('thumbnail')->nullable();
             $table->timestamps();
         });
     }

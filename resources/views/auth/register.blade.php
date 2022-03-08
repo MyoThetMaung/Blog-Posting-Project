@@ -1,7 +1,7 @@
 <x-layout>
-    <div class="container-">
-        <div class="row-">
-            <div class="col-md-4 mx-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mx-auto">
                 <div class="card p-4 m-5 shadow-lg">
                     <h3 class="text-center text-success mb-5">Registration Form</h3>
                     <form method="POST" action="">

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Blog extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'body','intro','slug','category_id','user_id'];
+    protected $fillable = ['title', 'body','intro','slug','category_id','user_id','thumbnail'];
     // protected $guarded = ['id'];
 
     public function scopeFilter($query, $filter)

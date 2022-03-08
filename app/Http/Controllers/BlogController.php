@@ -32,4 +32,28 @@ class BlogController extends Controller
         return redirect()->back();
     }
 
+    public function create() {
+        return view('blogs.create',[
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function store(){
+
+        $formData = request()->validate([
+            "title" => "required | min:3",
+            "slug" => "required | unique:blogs",
+            "intro" => "required",
+            "body" => "required",
+            "category_id" => "required | exists:categories,id"
+        ]);
+
+        $formData['user_id'] = auth()->id();
+        $formData['thumbnail'] = request()->file('thumbnail')->store('thumbnails');      //***  storing thumbnail in storage/app/public/thumbnails | But we change to 'public' in .env file  | php artisan storage:link  ***
+
+        Blog::create($formData);
+
+        return redirect('/');
+    }
+
 }

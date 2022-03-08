@@ -1,7 +1,6 @@
 @props(['comments'])
 <section class="container">
-    <div class="col-md-8 mx-auto">
-        <h5 class="my-3 text-secondary">Comments ({{$comments->count()}})</h5>              
+    <div class="col-md-8 mx-auto">         
         @foreach ($comments as $comment) 
             <!-- Single comment -->
             <x-single-comment :comment="$comment"/>

@@ -58,6 +58,11 @@
       <p class="text-center text-black-50">Please <a href="/login">login</a> to participate in the conversation ...</p>
     @endauth
     <!-- comment section -->
+    <section class="container">
+        <div class="col-md-8 mx-auto">    
+            <h5 class="my-3 text-secondary">Comments ({{$blog->comments->count()}})</h5>     
+        </div>
+    </section>
     <x-comment :comments="$blog->comments()->latest()->paginate(2)" />
 
     <!-- subscribe new blogs -->
