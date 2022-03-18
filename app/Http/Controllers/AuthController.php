@@ -37,8 +37,12 @@ class AuthController extends Controller
             'email' => 'required | max:255 | min:3 | exists:users',                                                  //checking email exists or not
             'password' => 'required | min:3'
         ]);
-        if(auth()->attempt($formData)){
-            return redirect('/')->with('success','Logged in successfully');                             //checking email and password with database done by attemp fucntion
+        if(auth()->attempt($formData)){                                                                     //checking email and password with database done by attemp fucntion
+            if(auth()->user()->is_admin){
+                return redirect('/admin/blogs');
+            }else{
+                return redirect('/')->with('success','Logged in successfully');  
+            }     
         }else{
             return redirect('/login')->withErrors(['email'=>'Invalid email or password']);                 //checking errors message
         }

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Blog::with('category','author')->filter(request(['search','category','username']))->paginate(6)->withQueryString();
+        $blogs = Blog::with('category','author')->filter(request(['search','category','username']))->latest()->paginate(6)->withQueryString();
         return view('blogs.index', [
             'blogs' => $blogs                                                                           //eager loading or lazy loading | fetching all blogs with their categories before looping through them
         ]);

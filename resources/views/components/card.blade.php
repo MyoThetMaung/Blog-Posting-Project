@@ -1,8 +1,8 @@
 @props(['blog'])
 <div class="card">
     <img
-      src="/storage/{{$blog->thumbnail}}"
-      class="card-img-top"
+      src={{$blog->thumbnail ? "/storage/$blog->thumbnail" : "https://www.thumpermassager.de/wp-content/themes/digi-theme/img/blog_default.png"}}
+      class="card-img-top" height="300px"
       alt="..."
     />
     <div class="card-body">

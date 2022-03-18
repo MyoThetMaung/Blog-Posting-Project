@@ -1,7 +1,7 @@
-<x-layout>
+<x-admin-layout>
     <div class="container-">
         <div class="row">
-            <div class="col-md-6 mx-auto">
+
                 <div class="card p-2 m-3 shadow-lg">
                     <h3 class="text-center my-3 text-success">Blog Create Form</h3>
                     <div class="col-md-10 mx-auto">
@@ -30,10 +30,9 @@
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-
                             <div class="mb-3">
-                                <label for="exampleInputEmail" class="form-label">Title</label>
-                                <textarea class="form-control" cols="30" rows="10" name="body" >{{old('body')}}</textarea>
+                                <label for="exampleInputEmail" class="form-label">Body</label>
+                                <textarea class="editor" name="body" >{{old('body')}}</textarea>
                                 @error('body')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
@@ -51,7 +50,7 @@
                                 <label for="category" class="form-label">Category</label>
                                 <select name="category_id" id="category" class="form-control">
                                     @foreach ($categories as $category)
-                                         <option {{$category->id == old('category_id') ? 'selected': ''}} value="{{$category->id}}">{{$category->name}}</option>  
+                                         <option {{$category->id == old('category_id') ? 'selected': ''}} value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('category_id')
@@ -64,7 +63,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
-</x-layout>
+</x-admin-layout>

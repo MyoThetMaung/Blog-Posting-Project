@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminBlogController;
 
 //blogs
 Route::get('/', [BlogController::class,'index']);
@@ -30,8 +31,11 @@ Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
 Route::post('/blogs/{blog:slug}/subscription', [BlogController::class,'subscriptionHandler']);
 
 //admin
-Route::get('/admin/blogs/create',[BlogController::class, 'create'])->middleware('admin');
-Route::post('/admin/blogs/store',[BlogController::class, 'store'])->middleware('admin');
+Route::get('/admin/blogs',[AdminBlogController::class, 'index'])->middleware('admin');
+Route::get('/admin/blogs/create',[AdminBlogController::class, 'create'])->middleware('admin');
+Route::post('/admin/blogs/store',[AdminBlogController::class, 'store'])->middleware('admin');
+Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class, 'edit'])->middleware('admin');
+Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class, 'destroy'])->middleware('admin');
 
 
 

@@ -1,13 +1,13 @@
 
 
 <x-layout>
-     <!-- singloe blog section -->
+     <!-- single blog section -->
      <div class="container">
         <div class="row">
           <div class="col-md-6 mx-auto text-center">
             <img
-              src="https://creativecoder.s3.ap-southeast-1.amazonaws.com/blogs/GOLwpsybfhxH0DW8O6tRvpm4jCR6MZvDtGOFgjq0.jpg"
-              class="card-img-top"
+              src="{{$blog->thumbnail ? "/storage/$blog->thumbnail" : "https://www.thumpermassager.de/wp-content/themes/digi-theme/img/blog_default.png"}}"
+              class="mt-1" width="400px" height="300px"
               alt="..."
             />
             <h3 class="my-3">{{$blog->title}}</h3>
@@ -28,7 +28,7 @@
             </form> <br>
 
             <p class="lh-md">
-                {{$blog->body}}
+                {!!$blog->body!!}
             </p>
           </div>
         </div>
@@ -59,8 +59,8 @@
     @endauth
     <!-- comment section -->
     <section class="container">
-        <div class="col-md-8 mx-auto">    
-            <h5 class="my-3 text-secondary">Comments ({{$blog->comments->count()}})</h5>     
+        <div class="col-md-8 mx-auto">
+            <h5 class="my-3 text-secondary">Comments ({{$blog->comments->count()}})</h5>
         </div>
     </section>
     <x-comment :comments="$blog->comments()->latest()->paginate(2)" />

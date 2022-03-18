@@ -15,7 +15,7 @@
   <body id="home">
     <!-- navbar -->
     <x-navbar></x-navbar>
-    
+
     {{$slot}}
 
 
@@ -27,8 +27,31 @@
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"
   ></script>
+  <script src="/ckeditor/ckeditor.js"></script>
+		<script>ClassicEditor
+				.create( document.querySelector( '.editor' ), {
 
-  
+					licenseKey: '',
+
+
+
+				} )
+				.then( editor => {
+					window.editor = editor;
+
+
+
+
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: 39258vfe34pw-tl8nrigdxvae' );
+					console.error( error );
+				} );
+		</script>
+
+
 </body>
 </html>
 
